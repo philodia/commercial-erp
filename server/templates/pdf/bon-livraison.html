@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Bon de Livraison {{numeroBL}}</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #333;
+        }
+
+        .delivery-note-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .delivery-note-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        .delivery-note-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .delivery-note-box .header-section td {
+            padding-bottom: 20px;
+        }
+
+        .delivery-note-box .header-section .company-details {
+            padding-left: 0;
+        }
+
+        .delivery-note-box .header-section .delivery-details {
+            text-align: right;
+        }
+
+        .delivery-note-box .delivery-details h1 {
+            font-size: 40px;
+            line-height: 40px;
+            color: #333;
+            margin: 0;
+        }
+        
+        .delivery-note-box .address-section td {
+            padding-bottom: 30px;
+        }
+        
+        .delivery-note-box .items-table .heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .delivery-note-box .items-table .item td {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .delivery-note-box .signature-section {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .delivery-note-box .signature-box {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            height: 100px;
+            width: 70%;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="delivery-note-box">
+        <!-- SECTION EN-TÊTE : LOGO, INFOS ENTREPRISE ET INFOS BL -->
+        <table class="header-section">
+            <tr>
+                <td class="company-details">
+                    <!-- <img src="URL_DE_VOTRE_LOGO" style="width: 100%; max-width: 200px" /> -->
+                    <strong>{{nomEntreprise}}</strong><br />
+                    {{adresseEntreprise}}<br />
+                    NINEA: {{nineaEntreprise}}
+                </td>
+                <td class="delivery-details">
+                    <h1>BON DE LIVRAISON</h1>
+                    <strong>Numéro :</strong> {{numeroBL}}<br />
+                    <strong>Date de livraison :</strong> {{dateLivraison}}<br />
+                    <strong>Réf. commande :</strong> {{numeroVente}}
+                </td>
+            </tr>
+        </table>
+
+        <!-- SECTION ADRESSE DE LIVRAISON -->
+        <table class="address-section">
+            <tr>
+                <td>
+                    <strong>Livré à :</strong><br />
+                    {{nomClient}}<br />
+                    {{adresseLivraison}}
+                </td>
+            </tr>
+        </table>
+
+        <!-- SECTION LIGNES DES PRODUITS LIVRÉS -->
+        <table class="items-table">
+            <thead>
+                <tr class="heading">
+                    <td>Référence Produit</td>
+                    <td>Description</td>
+                    <td style="text-align: right;">Quantité Livrée</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes seront injectées ici -->
+                {{lignes}}
+            </tbody>
+        </table>
+
+        <!-- SECTION SIGNATURE -->
+        <div class="signature-section">
+            <strong>Reçu par :</strong> _________________________________________<br><br>
+            <strong>Date de réception :</strong> ____ / ____ / _________<br><br>
+            
+            <strong>Signature et Cachet :</strong>
+            <div class="signature-box">
+            </div>
+            <p style="font-size: 12px; color: #777;">La signature de ce bon atteste de la réception des marchandises listées ci-dessus en bon état.</p>
+        </div>
+    </div>
+</body>
+</html>

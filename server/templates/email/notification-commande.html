@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de votre commande n°{{numeroCommande}}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .header h1 {
+            margin: 0;
+            color: #333333;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+            color: #555555;
+            font-size: 16px;
+        }
+        .order-summary {
+            background-color: #f9f9f9;
+            border: 1px solid #eeeeee;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .order-summary p {
+            margin: 5px 0;
+        }
+        .items-table {
+            width: 100%;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .items-table th, .items-table td {
+            text-align: left;
+            padding: 5px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999999;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff; /* Bleu */
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- <img src="URL_DE_VOTRE_LOGO" alt="Logo {{appName}}" width="150"> -->
+            <h1>Merci pour votre commande !</h1>
+        </div>
+        <div class="content">
+            <p>Bonjour <strong>{{nomClient}}</strong>,</p>
+            <p>Nous avons bien reçu votre commande et nous vous remercions de votre confiance. Nous commençons à la préparer dès maintenant.</p>
+            
+            <div class="order-summary">
+                <p><strong>Récapitulatif de la commande :</strong></p>
+                <p><strong>Numéro de commande :</strong> {{numeroCommande}}</p>
+                <p><strong>Date de la commande :</strong> {{dateCommande}}</p>
+                <p><strong>Montant total :</strong> {{montantTTC}}</p>
+
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Qté</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Les lignes de la commande seront injectées ici -->
+                        {{lignesCommande}}
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Nous vous enverrons une nouvelle notification dès que votre commande sera expédiée.</p>
+            <p>Vous pouvez suivre l'état de votre commande à tout moment depuis votre espace client.</p>
+            
+            <div style="text-align: center;">
+                <a href="{{orderUrl}}" class="button">Voir ma commande</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Pour toute question, vous pouvez répondre à cet e-mail ou contacter notre service client.</p>
+            <p>© {{currentYear}} {{appName}}. Tous droits réservés.</p>
+        </div>
+    </div>
+</body>
+</html>

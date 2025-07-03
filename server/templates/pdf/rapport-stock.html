@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Rapport de Stock</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .report-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .report-header h1 {
+            margin: 0;
+            color: #222;
+        }
+        .report-header .report-date {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: normal;
+            color: #555;
+        }
+        .report-header .company-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .kpi-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 2px solid #333;
+            border-bottom: 2px solid #333;
+            margin-bottom: 30px;
+        }
+
+        .kpi-box {
+            text-align: center;
+        }
+
+        .kpi-box .kpi-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .kpi-box .kpi-label {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 12px; /* Taille plus petite pour les listes potentiellement longues */
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .data-table .align-right {
+            text-align: right;
+        }
+        
+        .stock-alert {
+            color: #D32F2F; /* Rouge */
+            font-weight: bold;
+        }
+
+        .report-footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="report-container">
+        <!-- EN-TÊTE DU RAPPORT -->
+        <div class="report-header">
+            <div class="company-name">{{nomEntreprise}}</div>
+            <h1>Rapport d'État des Stocks</h1>
+            <div class="report-date">Au {{dateGeneration}}</div>
+        </div>
+
+        <!-- SECTION DES INDICATEURS CLÉS (KPIs) -->
+        <h3>Indicateurs Clés du Stock</h3>
+        <div class="kpi-section">
+            <div class="kpi-box">
+                <div class="kpi-value">{{valeurTotaleStock}}</div>
+                <div class="kpi-label">Valeur Totale du Stock</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-value">{{nombreProduitsGeres}}</div>
+                <div class="kpi-label">Produits en Stock</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-value stock-alert">{{produitsEnAlerte}}</div>
+                <div class="kpi-label">Produits en Alerte</div>
+            </div>
+        </div>
+
+        <!-- SECTION LISTE DES STOCKS BAS -->
+        <h3>Produits avec Stock Bas (sous le seuil d'alerte)</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Référence</th>
+                    <th>Désignation</th>
+                    <th class="align-right">Stock Actuel</th>
+                    <th class="align-right">Seuil d'Alerte</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes des produits en alerte seront injectées ici -->
+                {{lignesStockBas}}
+            </tbody>
+        </table>
+        
+        <!-- SECTION ÉTAT COMPLET DU STOCK -->
+        <h3>Inventaire Complet</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Référence</th>
+                    <th>Désignation</th>
+                    <th class="align-right">Stock Actuel</th>
+                    <th class="align-right">Valeur Unitaire (CUMP)</th>
+                    <th class="align-right">Valeur Totale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes de tous les produits en stock seront injectées ici -->
+                {{lignesInventaire}}
+            </tbody>
+        </table>
+
+        <!-- PIED DE PAGE DU RAPPORT -->
+        <div class="report-footer">
+            Rapport généré par le système ERP Sénégal.
+        </div>
+    </div>
+</body>
+</html>

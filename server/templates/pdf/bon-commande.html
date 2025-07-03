@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf--8" />
+    <title>Bon de Commande {{numeroCommande}}</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #333;
+        }
+
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .invoice-box .header-section td {
+            padding-bottom: 20px;
+        }
+        
+        .invoice-box .header-section .invoice-details {
+            text-align: right;
+        }
+
+        .invoice-box .invoice-details h1 {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+            margin: 0;
+        }
+        
+        .invoice-box .address-section td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box .address-section .supplier-address {
+            padding-left: 0;
+        }
+
+        .invoice-box .address-section .shipping-address {
+            padding-left: 20px;
+        }
+        
+        .invoice-box .items-table .heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .invoice-box .items-table .item td {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .invoice-box .items-table .align-right {
+            text-align: right;
+        }
+        
+        .invoice-box .totals-section {
+            margin-top: 20px;
+            margin-left: auto;
+            width: 50%;
+        }
+
+        .invoice-box .totals-section table .total td {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+        }
+        
+        .invoice-box .footer {
+            margin-top: 40px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #777;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+        <!-- SECTION EN-TÊTE : LOGO, INFOS COMMANDE -->
+        <table class="header-section">
+            <tr>
+                <td>
+                    <!-- <img src="URL_DE_VOTRE_LOGO" style="width: 100%; max-width: 200px" /> -->
+                    <strong>{{nomEntreprise}}</strong><br />
+                    {{adresseEntreprise}}<br />
+                    NINEA: {{nineaEntreprise}}
+                </td>
+                <td class="invoice-details">
+                    <h1>BON DE COMMANDE</h1>
+                    <strong>Numéro :</strong> {{numeroCommande}}<br />
+                    <strong>Date de commande :</strong> {{dateCommande}}<br />
+                    <strong>Date de livraison attendue :</strong> {{dateLivraisonAttendue}}
+                </td>
+            </tr>
+        </table>
+
+        <!-- SECTION ADRESSES FOURNISSEUR ET LIVRAISON -->
+        <table class="address-section">
+            <tr>
+                <td class="supplier-address">
+                    <strong>Fournisseur :</strong><br />
+                    {{nomFournisseur}}<br />
+                    {{adresseFournisseur}}
+                </td>
+                <td class="shipping-address">
+                    <strong>Adresse de livraison :</strong><br />
+                    {{nomEntreprise}}<br />
+                    {{adresseLivraison}}
+                </td>
+            </tr>
+        </table>
+
+        <!-- SECTION LIGNES DE LA COMMANDE -->
+        <table class="items-table">
+            <thead>
+                <tr class="heading">
+                    <td>Référence / Description</td>
+                    <td class="align-right">Quantité</td>
+                    <td class="align-right">P.U. HT</td>
+                    <td class="align-right">Total HT</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes seront injectées ici -->
+                {{lignes}}
+            </tbody>
+        </table>
+
+        <!-- SECTION TOTAUX -->
+        <div class="totals-section">
+            <table>
+                <tr>
+                    <td>Total HT :</td>
+                    <td class="align-right">{{totalHT}}</td>
+                </tr>
+                <tr>
+                    <td>Total TVA :</td>
+                    <td class="align-right">{{totalTVA}}</td>
+                </tr>
+                <tr class="total">
+                    <td>Total TTC :</td>
+                    <td class="align-right">{{totalTTC}}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- SECTION PIED DE PAGE : NOTES -->
+        <div class="footer">
+            <p><strong>Notes :</strong> {{notes}}</p>
+            <p>Veuillez inclure le numéro du bon de commande sur toutes vos correspondances et factures.</p>
+        </div>
+    </div>
+</body>
+</html>

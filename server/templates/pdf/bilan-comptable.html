@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Bilan Comptable au {{dateCloture}}</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #333;
+            font-size: 12px;
+        }
+
+        .report-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .report-header h1 {
+            margin: 0;
+        }
+        
+        .balance-sheet {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .balance-sheet-column {
+            width: 48%;
+        }
+        
+        .balance-sheet-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .balance-sheet-table th, .balance-sheet-table td {
+            border: 1px solid #999;
+            padding: 6px;
+        }
+
+        .balance-sheet-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        .balance-sheet-table .main-account {
+            font-weight: bold;
+        }
+        
+        .balance-sheet-table .sub-account {
+            padding-left: 20px;
+        }
+        
+        .balance-sheet-table .amount {
+            text-align: right;
+        }
+        
+        .balance-sheet-table .total-row {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .report-footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 10px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1>Bilan Comptable</h1>
+            <p><strong>{{nomEntreprise}}</strong></p>
+            <p>Exercice clos le {{dateCloture}}</p>
+        </div>
+
+        <div class="balance-sheet">
+            <!-- COLONNE ACTIF -->
+            <div class="balance-sheet-column">
+                <table class="balance-sheet-table">
+                    <thead>
+                        <tr>
+                            <th>ACTIF</th>
+                            <th class="amount">Montant ({{devise}})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Actif Immobilisé -->
+                        <tr class="main-account">
+                            <td>ACTIF IMMOBILISÉ</td>
+                            <td class="amount">{{totalActifImmobilise}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Immobilisations incorporelles</td>
+                            <td class="amount">{{valeurImmoIncorporelles}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Immobilisations corporelles</td>
+                            <td class="amount">{{valeurImmoCorporelles}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Immobilisations financières</td>
+                            <td class="amount">{{valeurImmoFinancieres}}</td>
+                        </tr>
+                        
+                        <!-- Actif Circulant -->
+                        <tr class="main-account">
+                            <td>ACTIF CIRCULANT</td>
+                            <td class="amount">{{totalActifCirculant}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Stocks et en-cours</td>
+                            <td class="amount">{{valeurStocks}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Créances clients et comptes rattachés</td>
+                            <td class="amount">{{valeurCreances}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Autres créances</td>
+                            <td class="amount">{{valeurAutresCreances}}</td>
+                        </tr>
+                        
+                        <!-- Trésorerie -->
+                        <tr class="main-account">
+                            <td>TRÉSORERIE - ACTIF</td>
+                            <td class="amount">{{valeurTresorerieActif}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Disponibilités (Banques, Caisse)</td>
+                            <td class="amount">{{valeurDisponibilites}}</td>
+                        </tr>
+
+                        <!-- Total Actif -->
+                        <tr class="total-row">
+                            <td>TOTAL ACTIF</td>
+                            <td class="amount">{{totalActif}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- COLONNE PASSIF -->
+            <div class="balance-sheet-column">
+                <table class="balance-sheet-table">
+                    <thead>
+                        <tr>
+                            <th>PASSIF</th>
+                            <th class="amount">Montant ({{devise}})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Capitaux Propres -->
+                        <tr class="main-account">
+                            <td>CAPITAUX PROPRES</td>
+                            <td class="amount">{{totalCapitauxPropres}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Capital social</td>
+                            <td class="amount">{{valeurCapital}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Réserves</td>
+                            <td class="amount">{{valeurReserves}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Résultat de l'exercice</td>
+                            <td class="amount">{{resultatExercice}}</td>
+                        </tr>
+                        
+                        <!-- Dettes -->
+                        <tr class="main-account">
+                            <td>DETTES</td>
+                            <td class="amount">{{totalDettes}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Emprunts et dettes financières</td>
+                            <td class="amount">{{valeurDettesFinancieres}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Dettes fournisseurs et comptes rattachés</td>
+                            <td class="amount">{{valeurDettesFournisseurs}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Dettes fiscales et sociales</td>
+                            <td class="amount">{{valeurDettesFiscales}}</td>
+                        </tr>
+                        
+                        <!-- Trésorerie Passif (découverts bancaires) -->
+                        <tr class="main-account">
+                            <td>TRÉSORERIE - PASSIF</td>
+                            <td class="amount">{{valeurTresoreriePassif}}</td>
+                        </tr>
+                        <tr class="sub-account">
+                            <td>Concours bancaires courants</td>
+                            <td class="amount">{{valeurDecouverts}}</td>
+                        </tr>
+                        
+                        <!-- Total Passif -->
+                        <tr class="total-row">
+                            <td>TOTAL PASSIF</td>
+                            <td class="amount">{{totalPassif}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="report-footer">
+            Rapport généré le {{dateGeneration}}.
+        </div>
+    </div>
+</body>
+</html>

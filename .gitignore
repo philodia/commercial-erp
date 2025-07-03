@@ -1,0 +1,75 @@
+# ===================================================
+# .gitignore pour projet MERN (React/Node) Monorepo
+# Application : commercial-erp-senegal
+# ===================================================
+
+# Dépendances
+# Ne jamais versionner les dossiers node_modules. Ils peuvent être recréés
+# à tout moment en exécutant 'npm install'.
+node_modules/
+client/node_modules/
+server/node_modules/
+package-lock.json # Optionnel: Certaines équipes préfèrent ne pas le versionner en monorepo, mais la pratique courante est de le garder. Vous pouvez le décommenter si besoin.
+
+# Fichiers d'environnement
+# Contiennent des secrets (clés API, identifiants BDD, etc.) et ne doivent JAMAIS
+# être partagés. Utilisez un fichier .env.example comme modèle.
+.env
+.env.*
+!.env.example
+
+# Fichiers spécifiques au client (React.js)
+# =========================================
+client/.env
+client/build/
+
+# Fichiers spécifiques au serveur (Node.js)
+# ==========================================
+server/.env
+server/dist/ # Si vous utilisez TypeScript ou un bundler pour le serveur
+server/uploads/ # Dossier pour les fichiers uploadés par les utilisateurs
+server/exports/ # Dossier pour les fichiers exportés (PDF, Excel...)
+
+# Fichiers de logs
+# Les logs générés par l'application ou npm.
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers de cache et temporaires
+# =================================
+.npm
+.eslintcache
+.cache
+
+# Fichiers de couverture de tests
+# ================================
+coverage/
+.nyc_output/
+
+# Fichiers générés par les éditeurs de code
+# =========================================
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (WebStorm, IntelliJ, etc.)
+.idea/
+
+# Fichiers système
+# =================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini

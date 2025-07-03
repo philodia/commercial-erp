@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerte de Stock Bas - {{produitDesignation}}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .header h1 {
+            margin: 0;
+            color: #f0ad4e; /* Orange pour une alerte */
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+            line-height: 1.6;
+            color: #555555;
+            font-size: 16px;
+        }
+        .product-details {
+            background-color: #fef8e7; /* Jaune très clair */
+            border: 1px solid #f0ad4e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .product-details p {
+            margin: 5px 0;
+        }
+        .stock-level {
+            font-weight: bold;
+            color: #d9534f; /* Rouge pour le niveau de stock critique */
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999999;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff; /* Bleu */
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Alerte de Stock Bas</h1>
+        </div>
+        <div class="content">
+            <p>Bonjour,</p>
+            <p>Ceci est une notification automatique pour vous informer que le niveau de stock pour l'un de vos produits a atteint ou est passé en dessous de son seuil d'alerte.</p>
+            
+            <div class="product-details">
+                <p><strong>Produit :</strong> {{produitDesignation}}</p>
+                <p><strong>Référence :</strong> {{produitReference}}</p>
+                <hr>
+                <p><strong>Stock actuel :</strong> <span class="stock-level">{{stockActuel}}</span> unité(s)</p>
+                <p><strong>Seuil d'alerte :</strong> {{seuilAlerte}} unité(s)</p>
+            </div>
+
+            <p>Il est recommandé de passer une commande de réapprovisionnement auprès de votre fournisseur dès que possible pour éviter une rupture de stock.</p>
+            
+            <div style="text-align: center;">
+                <a href="{{productUrl}}" class="button">Voir la fiche produit</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Cette alerte a été générée automatiquement par <strong>{{appName}}</strong>.</p>
+            <p>© {{currentYear}} {{appName}}. Tous droits réservés.</p>
+        </div>
+    </div>
+</body>
+</html>
